@@ -2,8 +2,7 @@
   <div id="app">
     <h2>{{ title }}</h2>
     <Navbar></Navbar>
-    <AllFriends :friends="friends" @delete="deleteFriend"></AllFriends>
-    <OnlineFriends :friends="friends" />
+    <Hook></Hook>
 
    
   </div>
@@ -12,35 +11,25 @@
 
 <script>
 import Navbar from './components/Navbar.vue'
-import AllFriends from './components/AllFriends.vue'
-import OnlineFriends from './components/OnlineFriends.vue'
+import Hook from './components/Hook.vue'
+
 
 export default {
   name: 'app',
   data(){
     return {
       title: 'Hurray ! Our vue apps are running :)',
-      friends:[
-                {name:'A', online:true},
-                {name:'B', online:true},
-                {name:'C', online:false},
-                {name:'D', online:true},
-                {name:'E', online:false}
-            ]
+     
     }
   },
   components:{
     Navbar,
-    AllFriends,
-    OnlineFriends
+    Hook
+   
   },
   methods:{
-    deleteFriend(payload){
-      //console.log(payload);
-      this.friends = this.friends.filter(friend =>{
-        return friend.name !== payload.name
-      })
-    }
+  
+    
   }
 
 }
