@@ -1,7 +1,8 @@
 <template>
 <div class="Hook">
     <h1>Posts</h1><hr>
-    <div v-for="post in posts" :key="post.id">
+    <input type="text" v-model="searchTerm" >
+    <div v-for="post in filterseacrh" :key="post.id">
         <h2>{{post.title}}</h2>
         <p>{{post.body | snippet}}</p><hr>
     </div>
@@ -14,7 +15,15 @@ export default {
     name:'Hook',
     data(){
         return{
-           posts:[]
+           posts:[],
+           searchTerm: ''
+        }
+    },
+    computed:{
+        filterseacrh(){
+          return  this.posts.filter(post =>{
+                return post.title.match(this.searchTerm)
+            })
         }
     },
     methods:{
